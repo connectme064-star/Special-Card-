@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The PP Chronicles | Pawan & Pragati</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --gold: #dfbd79;
+  --cream: #fff1dc;
+  --wine: #4b142c;
+  --dark: #160710;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark);
+  color: var(--cream);
+  font-family: 'Playfair Display', serif;
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 35px 20px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, #60253b 0%, #280d1c 55%, #10050c 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 750px;
+}
+
+.gold {
+  color: var(--gold);
+}
+
+.script {
+  font-family: 'Great Vibes', cursive;
+  color: var(--gold);
+  font-weight: normal;
+}
+
+.eyebrow {
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-family: Cinzel, serif;
+  font-weight: 400;
+  font-size: clamp(28px, 7vw, 62px);
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-family: Cinzel, serif;
+  font-weight: 400;
+  font-size: clamp(23px, 5vw, 38px);
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.divider {
+  width: 100px;
+  height: 1px;
+  background: var(--gold);
+  margin: 25px auto;
+}
+
+.btn {
+  background: linear-gradient(135deg, #edcf8e, #a77a39);
+  color: #29101a;
+  border: 1px solid var(--gold);
+  padding: 14px 28px;
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 25px;
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px #dfbd7988;
+}
+
+.outline {
+  background: transparent;
+  color: var(--gold);
+}
+
+/* PARTICLES */
+
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* PASSWORD */
+
+.lock {
+  font-size: 55px;
+  margin-bottom: 25px;
+}
+
+input {
+  background: #ffffff0c;
+  border: 1px solid var(--gold);
+  padding: 16px;
+  width: min(300px, 90%);
+  color: white;
+  text-align: center;
+  letter-spacing: 3px;
+  outline: none;
+  margin-top: 25px;
+}
+
+#error {
+  color: #ff9999;
+  margin-top: 15px;
+}
+
+/* DOOR */
+
+#doorScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  min-height: 100vh;
+  padding: 0;
+  background: #160710;
+}
+
+.door-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  perspective: 1500px;
+}
+
+.door {
+  width: 50%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, #16060d, #642e27, #270b17);
+  border: 5px solid #b78b48;
+  box-shadow: inset 0 0 50px #000;
+  transition: transform 3s cubic-bezier(.7,0,.2,1);
+  position: relative;
+}
+
+.door::after {
+  content: "✧";
+  position: absolute;
+  top: 50%;
+  font-size: 75px;
+  color: var(--gold);
+}
+
+.door.left::after {
+  right: 20px;
+}
+
+.door.right::after {
+  left: 20px;
+}
+
+#doorScreen.open .left {
+  transform: rotateY(-110deg);
+  transform-origin: left;
+}
+
+#doorScreen.open .right {
+  transform: rotateY(110deg);
+  transform-origin: right;
+}
+
+.door-label {
+  position: absolute;
+  z-index: 5;
+  color: var(--gold);
+  font-family: 'Great Vibes', cursive;
+  font-size: 55px;
+}
+
+/* PP LOGO */
+
+.logo {
+  width: 130px;
+  height: 130px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 35px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 53px;
+  color: var(--gold);
+  box-shadow: 0 0 35px #dfbd7955;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  to {
+    box-shadow: 0 0 60px #dfbd79aa;
+  }
+}
+
+/* NAMES */
+
+.names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(52px, 12vw, 95px);
+  color: var(--gold);
+  line-height: 1.4;
+}
+
+.and {
+  font-family: 'Great Vibes', cursive;
+  font-size: 45px;
+  color: white;
+}
+
+/* SECTIONS */
+
+section:not(.screen) {
+  padding: 90px 20px;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, #200a17, #301020);
+}
+
+.section-content {
+  max-width: 750px;
+  margin: auto;
+}
+
+.card {
+  border: 1px solid #dfbd7966;
+  background: #ffffff08;
+  padding: 35px 22px;
+  max-width: 570px;
+  margin: 30px auto;
+  box-shadow: 0 0 35px #0005;
+}
+
+/* COUNTDOWN */
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 35px 0;
+}
+
+.time-box {
+  border: 1px solid #dfbd7977;
+  padding: 20px 12px;
+  min-width: 85px;
+  background: #ffffff09;
+}
+
+.time-box strong {
+  display: block;
+  font-family: Cinzel, serif;
+  font-size: 27px;
+  color: var(--gold);
+}
+
+.time-box span {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* LOVE GAME */
+
+.hearts {
+  display: grid;
+  grid-template-columns: repeat(3, 65px);
+  justify-content: center;
+  gap: 15px;
+  margin: 35px auto;
+}
+
+.heart-item {
+  font-size: 35px;
+  background: #ffffff0b;
+  border: 1px solid #dfbd7955;
+  padding: 12px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.heart-item:hover {
+  transform: scale(1.2);
+}
+
+.heart-item.found {
+  opacity: .25;
+  pointer-events: none;
+}
+
+#gameMessage {
+  color: var(--gold);
+  margin-top: 20px;
+}
+
+/* LOVE LETTER */
+
+.envelope {
+  font-size: 90px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.envelope:hover {
+  transform: scale(1.15);
+}
+
+.letter {
+  max-width: 500px;
+  margin: 25px auto;
+  padding: 30px 22px;
+  border: 1px solid var(--gold);
+  background: #fff0d8;
+  color: #572039;
+  animation: fadeIn 1s;
+}
+
+.letter h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+/* UNIVERSE */
+
+.stars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px auto;
+}
+
+.star {
+  font-size: 40px;
+  color: var(--gold);
+  cursor: pointer;
+  transition: .3s;
+  animation: twinkle 2s infinite alternate;
+}
+
+.star:hover {
+  transform: scale(1.4);
+}
+
+@keyframes twinkle {
+  from { opacity: .45; }
+  to { opacity: 1; }
+}
+
+#starMessage {
+  color: var(--gold);
+  min-height: 55px;
+}
+
+/* PROMISE */
+
+.promise {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  color: var(--gold);
+  line-height: 1.6;
+}
+
+/* PETALS */
+
+.petal {
+  position: fixed;
+  top: -30px;
+  color: #e4a0a8;
+  z-index: 10;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(600deg);
+    opacity: 0;
+  }
+}
+
+/* MUSIC BUTTON */
+
+.music {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 110;
+  background: #260c1b;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 15px;
+  border-radius: 30px;
+  font-size: 11px;
+}
+
+/* ANIMATIONS */
+
+.fade {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+footer {
+  color: #dfbd7999;
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 45px;
+}
+
+@media(max-width:500px) {
+
+  .time-box {
+    min-width: 68px;
+    padding: 13px 6px;
+  }
+
+  .time-box strong {
+    font-size: 21px;
+  }
+
+  .eyebrow {
+    letter-spacing: 2px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<button class="music" onclick="toggleMusic()" id="musicBtn">
+♫ MUSIC OFF
+</button>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 1. SECRET PASSWORD SCREEN -->
+
+<div class="screen" id="passwordScreen">
+
+  <div class="content fade">
+
+    <div class="lock">🔐</div>
+
+    <div class="eyebrow">A PRIVATE WORLD OF TWO HEARTS</div>
+
+    <h1 class="script">The PP Chronicles</h1>
+
+    <div class="divider"></div>
+
+    <p>
+      Every beautiful story has a secret entrance.<br>
+      This one belongs only to two special souls.
+    </p>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="ENTER SECRET PASSWORD"
+    >
+
+    <br>
+
+    <button class="btn" onclick="unlock()">
+      UNLOCK YOUR STORY
+    </button>
+
+    <p id="error"></p>
+
+    <footer>EXCLUSIVELY PAWAN & PRAGATI</footer>
+
+  </div>
+
+</div>
+
+
+<!-- 2. ROYAL DOOR ANIMATION -->
+
+<div class="screen hidden" id="doorScreen">
+
+  <div class="door-label">P ♥ P</div>
+
+  <div class="door-wrapper">
+
+    <div class="door left"></div>
+    <div class="door right"></div>
+
+  </div>
+
+</div>
+
+
+<!-- 3. MAIN WELCOME SCREEN -->
+
+<div class="screen hidden" id="mainScreen">
+
+  <div class="content fade">
+
+    <div class="eyebrow">
+      TWO SOULS · ONE DESTINY
+    </div>
+
+    <div class="logo">
+      P<span style="font-size:25px">♥</span>P
+    </div>
+
+    <div class="names">
+      Pawan
+    </div>
+
+    <div class="and">and</div>
+
+    <div class="names">
+      Pragati
+    </div>
+
+    <div class="divider"></div>
+
+    <p>
+      Two hearts, two dreams,<br>
+      one beautiful journey begins.
+    </p>
+
+    <button class="btn" onclick="scrollToSection('countdownSection')">
+      ENTER OUR WORLD ✨
+    </button>
+
+    <footer>THE BEGINNING OF FOREVER</footer>
+
+  </div>
+
+</div>
+
+
+<!-- 4. COUNTDOWN -->
+
+<section id="countdownSection">
+
+  <div class="section-content">
+
+    <div class="eyebrow">THE MOST BEAUTIFUL DAY</div>
+
+    <h2>Counting Down to Forever</h2>
+
+    <div class="divider"></div>
+
+    <p>
+      A new chapter, a new beginning,<br>
+      and a lifetime of togetherness.
+    </p>
+
+    <div class="countdown">
+
+      <div class="time-box">
+        <strong id="days">00</strong>
+        <span>DAYS</span>
+      </div>
+
+      <div class="time-box">
+        <strong id="hours">00</strong>
+        <span>HOURS</span>
+      </div>
+
+      <div class="time-box">
+        <strong id="minutes">00</strong>
+        <span>MINUTES</span>
+      </div>
+
+      <div class="time-box">
+        <strong id="seconds">00</strong>
+        <span>SECONDS</span>
+      </div>
+
+    </div>
+
+    <h2 class="script gold" style="font-size:45px">
+      19 November 2026
+    </h2>
+
+  </div>
+
+</section>
+
+
+<!-- 5. PERSONAL LOVE STORY -->
+
+<section>
+
+  <div class="section-content">
+
+    <div class="eyebrow">A STORY WRITTEN IN DESTINY</div>
+
+    <h2>Two Hearts, One Journey</h2>
+
+    <div class="divider"></div>
+
+    <div class="card">
+
+      <p>
+        Some people come into our lives<br>
+        and make everything more beautiful.
+      </p>
+
+      <br>
+
+      <p>
+        Some connections are beyond words,<br>
+        beyond explanations,<br>
+        and beyond time.
+      </p>
+
+      <br>
+
+      <p class="gold">
+        And then there is a story called<br>
+        <strong>PAWAN & PRAGATI.</strong>
+      </p>
+
+      <br>
+
+      <p>
+        May every sunrise bring new happiness,<br>
+        every sunset bring peace,<br>
+        and every tomorrow bring you closer.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 6. SECRET LOVE LETTER -->
+
+<section>
+
+  <div class="section-content">
+
+    <div class="eyebrow">A LITTLE SURPRISE</div>
+
+    <h2>A Letter From The Heart</h2>
+
+    <div class="divider"></div>
+
+    <p>
+      There is something special waiting for you.
+    </p>
+
+    <div class="envelope" onclick="openLetter()">
+      💌
+    </div>
+
+    <p class="gold">TAP TO OPEN YOUR LETTER</p>
+
+    <div id="letter" class="letter hidden">
+
+      <h3>Dear Pawan & Pragati,</h3>
+
+      <p>
+        Life is not about having a perfect story.
+        It is about finding someone with whom
+        every ordinary moment becomes extraordinary.
+      </p>
+
+      <br>
+
+      <p>
+        Hold each other's hands through every
+        season of life. Celebrate the little things,
+        forgive the small mistakes and never stop
+        choosing each other.
+      </p>
+
+      <br>
+
+      <p>
+        May your home always be filled with laughter,
+        your hearts with love and your journey
+        with endless beautiful memories.
+      </p>
+
+      <br>
+
+      <h3>With Love, Forever ❤️</h3>
+
+      <p class="gold">P ♥ P</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 7. OUR LITTLE UNIVERSE -->
+
+<section>
+
+  <div class="section-content">
+
+    <div class="eyebrow">A UNIVERSE OF LOVE</div>
+
+    <h2>Our Little Universe ✨</h2>
+
+    <div class="divider"></div>
+
+    <p>
+      Touch the stars and discover little reminders
+      of a beautiful journey.
+    </p>
+
+    <div class="stars">
+
+      <span class="star" onclick="showStar(0)">✦</span>
+      <span class="star" onclick="showStar(1)">✧</span>
+      <span class="star" onclick="showStar(2)">✦</span>
+      <span class="star" onclick="showStar(3)">✧</span>
+      <span class="star" onclick="showStar(4)">✦</span>
+
+    </div>
+
+    <p id="starMessage">
+      Choose a star to reveal a message ❤️
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- 8. MINI LOVE GAME -->
+
+<section>
+
+  <div class="section-content">
+
+    <div class="eyebrow">A LITTLE GAME FOR TWO</div>
+
+    <h2>Find Your Forever ❤️</h2>
+
+    <div class="divider"></div>
+
+    <p>
+      Five hidden hearts are waiting.<br>
+      Find all five to unlock your surprise!
+    </p>
+
+    <div class="hearts" id="hearts">
+
+      <span class="heart-item" onclick="findHeart(this)">♡</span>
+      <span class="heart-item" onclick="findHeart(this)">♡</span>
+      <span class="heart-item" onclick="findHeart(this)">♡</span>
+      <span class="heart-item" onclick="findHeart(this)">♡</span>
+      <span class="heart-item" onclick="findHeart(this)">♡</span>
+      <span class="heart-item" onclick="findHeart(this)">♡</span>
+
+    </div>
+
+    <p id="gameMessage">
+      Hearts Found: 0 / 5
+    </p>
+
+    <div id="gameReward" class="hidden">
+
+      <div class="divider"></div>
+
+      <h2 class="script" style="font-size:45px">
+        You Found Forever!
+      </h2>
+
+      <p>
+        Some treasures are not found in the world.<br>
+        They are found in each other's hearts. ❤️
+      </p>
+
+      <div style="font-size:55px;margin-top:20px">
+        💍❤️🌹
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 9. FOREVER PROMISE -->
+
+<section>
+
+  <div class="section-content">
+
+    <div class="eyebrow">A PROMISE FOR A LIFETIME</div>
+
+    <h2>Forever Starts Here</h2>
+
+    <div class="divider"></div>
+
+    <div class="card">
+
+      <p class="promise">
+        One promise.<br>
+        One lifetime.<br>
+        One beautiful forever.
+      </p>
+
+      <br>
+
+      <p>
+        No matter where life takes you,<br>
+        may you always find your way<br>
+        back to each other's hearts.
+      </p>
+
+      <button class="btn" onclick="makePromise()">
+        CELEBRATE FOREVER ❤️
+      </button>
+
+      <div id="promiseMessage" class="hidden">
+
+        <div style="font-size:65px;margin:25px">
+          💍
+        </div>
+
+        <h2 class="script">
+          Forever & Always
+        </h2>
+
+        <p class="gold">
+          Pawan ❤️ Pragati
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 10. FINAL SCREEN -->
+
+<section class="screen">
+
+  <div class="content fade">
+
+    <div class="logo">
+      P<span style="font-size:25px">♥</span>P
+    </div>
+
+    <div class="eyebrow">AND SO THE STORY BEGINS</div>
+
+    <h1 class="script">
+      The PP Chronicles
+    </h1>
+
+    <div class="divider"></div>
+
+    <div class="names">
+      Pawan
+    </div>
+
+    <div class="and">❤️</div>
+
+    <div class="names">
+      Pragati
+    </div>
+
+    <br>
+
+    <p>
+      Two Names. One Promise.<br>
+      One Lifetime.
+    </p>
+
+    <div style="font-size:45px;margin-top:30px">
+      🌹 💍 🌹
+    </div>
+
+    <footer>
+      MADE WITH LOVE · EXCLUSIVELY FOR P & P
+    </footer>
+
+  </div>
+
+</section>
+
+
+<script>
+
+/* PASSWORD SYSTEM */
+
+function unlock() {
+
+  const password =
+    document.getElementById("password").value;
+
+  const error =
+    document.getElementById("error");
+
+  if(password === "PP1911Forever") {
+
+    error.innerText = "";
+
+    document.getElementById("passwordScreen")
+      .classList.add("hidden");
+
+    const door =
+      document.getElementById("doorScreen");
+
+    door.classList.remove("hidden");
+
+    setTimeout(() => {
+      door.classList.add("open");
+    }, 400);
+
+    setTimeout(() => {
+
+      door.classList.add("hidden");
+
+      document.getElementById("mainScreen")
+        .classList.remove("hidden");
+
+      createPetals();
+
+    }, 3500);
+
+  } else {
+
+    error.innerText =
+      "Incorrect password. Try again ❤️";
+
+    document.getElementById("password")
+      .classList.add("shake");
+
+    setTimeout(() => {
+      document.getElementById("password")
+        .classList.remove("shake");
+    }, 500);
+
+  }
+
+}
+
+
+/* ENTER KEY PASSWORD */
+
+document.getElementById("password")
+  .addEventListener("keypress", function(e) {
+
+    if(e.key === "Enter") {
+      unlock();
+    }
+
+  });
+
+
+/* SCROLL */
+
+function scrollToSection(id) {
+
+  document.getElementById(id)
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+/* COUNTDOWN */
+
+/* Change time here if wedding time is different */
+
+const weddingDate =
+  new Date("2026-11-19T00:00:00");
+
+function updateCountdown() {
+
+  const now = new Date();
+
+  let distance = weddingDate - now;
+
+  if(distance <= 0) {
+
+    document.getElementById("days").innerText = "00";
+    document.getElementById("hours").innerText = "00";
+    document.getElementById("minutes").innerText = "00";
+    document.getElementById("seconds").innerText = "00";
+
+    return;
+
+  }
+
+  const days =
+    Math.floor(distance / (1000 * 60 * 60 * 24));
+
+  const hours =
+    Math.floor((distance / (1000 * 60 * 60)) % 24);
+
+  const minutes =
+    Math.floor((distance / (1000 * 60)) % 60);
+
+  const seconds =
+    Math.floor((distance / 1000) % 60);
+
+  document.getElementById("days").innerText =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").innerText =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").innerText =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").innerText =
+    String(seconds).padStart(2, "0");
+
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+
+/* LOVE LETTER */
+
+function openLetter() {
+
+  const letter =
+    document.getElementById("letter");
+
+  letter.classList.toggle("hidden");
+
+  if(!letter.classList.contains("hidden")) {
+    letter.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+
+}
+
+
+/* STAR MESSAGES */
+
+const starMessages = [
+
+  "You are each other's favourite chapter. ❤️",
+
+  "May your love grow stronger with every sunrise. 🌅",
+
+  "Together is the most beautiful place to be. 💕",
+
+  "A lifetime of laughter, love and little adventures. 🌹",
+
+  "Your forever story starts with one beautiful YES. 💍"
+
+];
+
+function showStar(index) {
+
+  document.getElementById("starMessage")
+    .innerText = starMessages[index];
+
+}
+
+
+/* MINI GAME */
+
+let foundHearts = 0;
+
+function findHeart(element) {
+
+  if(element.classList.contains("found")) {
+    return;
+  }
+
+  element.classList.add("found");
+
+  element.innerText = "❤️";
+
+  foundHearts++;
+
+  document.getElementById("gameMessage")
+    .innerText =
+    "Hearts Found: " + foundHearts + " / 5";
+
+  if(foundHearts === 5) {
+
+    document.getElementById("gameReward")
+      .classList.remove("hidden");
+
+    createPetals();
+
+  }
+
+}
+
+
+/* FOREVER PROMISE */
+
+function makePromise() {
+
+  document.getElementById("promiseMessage")
+    .classList.remove("hidden");
+
+  createPetals();
+
+}
+
+
+/* FLOWER PETALS */
+
+function createPetals() {
+
+  const symbols = ["🌸", "🌹", "✿", "♥"];
+
+  for(let i = 0; i < 30; i++) {
+
+    setTimeout(() => {
+
+      const petal =
+        document.createElement("div");
+
+      petal.className = "petal";
+
+      petal.innerText =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+      petal.style.left =
+        Math.random() * 100 + "vw";
+
+      petal.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+      petal.style.fontSize =
+        (12 + Math.random() * 18) + "px";
+
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 10000);
+
+    }, i * 120);
+
+  }
+
+}
+
+
+/* MUSIC CONTROL */
+
+/* Upload music.mp3 in the same GitHub folder */
+
+let musicPlaying = false;
+
+function toggleMusic() {
+
+  const music =
+    document.getElementById("bgMusic");
+
+  const button =
+    document.getElementById("musicBtn");
+
+  if(!musicPlaying) {
+
+    music.play().then(() => {
+
+      musicPlaying = true;
+
+      button.innerText = "♫ MUSIC ON";
+
+    }).catch(() => {
+
+      button.innerText = "♫ ADD music.mp3";
+
+    });
+
+  } else {
+
+    music.pause();
+
+    musicPlaying = false;
+
+    button.innerText = "♫ MUSIC OFF";
+
+  }
+
+}
+
+
+/* BACKGROUND PARTICLES */
+
+const canvas =
+  document.getElementById("particles");
+
+const ctx =
+  canvas.getContext("2d");
+
+let particles = [];
+
+function resizeCanvas() {
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+}
+
+window.addEventListener("resize", resizeCanvas);
+
+resizeCanvas();
+
+for(let i = 0; i < 70; i++) {
+
+  particles.push({
+
+    x: Math.random() * window.innerWidth,
+
+    y: Math.random() * window.innerHeight,
+
+    size: Math.random() * 2 + 1,
+
+    speed: Math.random() * .5 + .1
+
+  });
+
+}
+
+function animateParticles() {
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+
+    ctx.beginPath();
+
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+
+    ctx.fillStyle = "#dfbd79";
+
+    ctx.globalAlpha = Math.random() * .5 + .2;
+
+    ctx.fill();
+
+    p.y -= p.speed;
+
+    if(p.y < 0) {
+      p.y = canvas.height;
+      p.x = Math.random() * canvas.width;
+    }
+
+  });
+
+  ctx.globalAlpha = 1;
+
+  requestAnimationFrame(animateParticles);
+
+}
+
+animateParticles();
+
+
+</script>
+
+</body>
+</html>
